@@ -16,7 +16,7 @@ public class Persona {
 
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

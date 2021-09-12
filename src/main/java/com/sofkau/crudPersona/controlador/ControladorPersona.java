@@ -32,5 +32,9 @@ public class ControladorPersona {
         return servicioPersona.listarId(id);
     }
 
+    @GetMapping(value = "/borrarPersona/{id}")
+    public void borrarPersona(@PathVariable int id){
+        servicioPersona.borrar(id);
+    }
 
 }
