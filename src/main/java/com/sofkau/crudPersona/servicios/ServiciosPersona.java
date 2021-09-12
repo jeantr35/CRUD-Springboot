@@ -1,12 +1,13 @@
 package com.sofkau.crudPersona.servicios;
 
 import com.sofkau.crudPersona.entidades.Persona;
+import com.sofkau.crudPersona.excopciones.PersonaNoEncontrada;
 import com.sofkau.crudPersona.repositorio.InterfazRepositorioPersona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ServiciosPersona implements InterfazServicioPersona{
@@ -21,6 +22,9 @@ public class ServiciosPersona implements InterfazServicioPersona{
 
     @Override
     public Persona listarId(int id) {
+        if (data.findById(id).isEmpty()){
+            throw new PersonaNoEncontrada();
+        }
         return data.findById(id).get();
     }
 

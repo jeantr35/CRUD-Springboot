@@ -1,6 +1,7 @@
 package com.sofkau.crudPersona.controlador;
 
 import com.sofkau.crudPersona.entidades.Persona;
+import com.sofkau.crudPersona.excopciones.PersonaNoEncontrada;
 import com.sofkau.crudPersona.servicios.InterfazServicioPersona;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ControladorPersona {
     }
 
     @GetMapping(value = "/listarPersona/{id}")
-    public Persona listarPersonaPorId(@PathVariable int id){
+    public Persona listarPersonaPorId(@PathVariable int id) throws PersonaNoEncontrada {
         return servicioPersona.listarId(id);
     }
 
@@ -40,6 +41,11 @@ public class ControladorPersona {
     @PostMapping(value = "/actualizarPersona")
     public Persona actualizarPersonaPorId(@RequestBody Persona persona){
         return servicioPersona.actualizar(persona);
+    }
+
+    @ExceptionHandler(value = PersonaNoEncontrada.class)
+    public String handlePersonaNoEncontrada(PersonaNoEncontrada personaNoEncontrada){
+        return "Persona no encontrada rey, revisa la ID ingresada";
     }
 
 }
