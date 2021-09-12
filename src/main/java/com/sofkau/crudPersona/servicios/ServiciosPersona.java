@@ -35,6 +35,9 @@ public class ServiciosPersona implements InterfazServicioPersona{
 
     @Override
     public void borrar(int id) {
+        if (data.findById(id).isEmpty()){
+            throw new PersonaNoEncontrada();
+        }
         data.deleteById(id);
     }
 

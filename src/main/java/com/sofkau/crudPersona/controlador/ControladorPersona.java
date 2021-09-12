@@ -34,7 +34,7 @@ public class ControladorPersona {
     }
 
     @PostMapping(value = "/borrarPersona/{id}")
-    public void borrarPersona(@PathVariable int id){
+    public void borrarPersona(@PathVariable int id) throws PersonaNoEncontrada{
         servicioPersona.borrar(id);
     }
 
