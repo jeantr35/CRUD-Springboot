@@ -2,8 +2,13 @@ package com.sofkau.crudPersona.controlador;
 
 import com.sofkau.crudPersona.entidades.Persona;
 import com.sofkau.crudPersona.servicios.InterfazServicioPersona;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.sql.Time;
 
 @RestController
 @RequestMapping("api")
@@ -21,5 +26,11 @@ public class ControladorPersona {
     public Persona guardarPersonas(@RequestBody Persona persona){
         return servicioPersona.guardar(persona);
     }
+
+    @GetMapping(value = "/listarPersona/{id}")
+    public Persona listarPersonaPorId(@PathVariable int id){
+        return servicioPersona.listarId(id);
+    }
+
 
 }
